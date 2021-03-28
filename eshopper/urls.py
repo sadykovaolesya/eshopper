@@ -17,14 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 import mainapp.views as mainapp
-import blogapp.views as blogapp
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', mainapp.main),
-    path('shop/', mainapp.shop),
-    path('product_details/', mainapp.product_details),
-    path('contact_us/', mainapp.contact_us),
+    path('', mainapp.main, name = 'main'),
+    path('', include('mainapp.urls')),
     path('blog/', include('blogapp.urls')),
+    path('auth/', include(('authnapp.urls', 'authnapp'), namespace='auth')),
 
 ]
