@@ -59,7 +59,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="{% static 'images/home/logo.png' %%}" alt="" /></a>
+							<a href="{% url 'main' %}"><img src="{% static 'images/home/logo.png' %%}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -88,13 +88,17 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
+                                {% if user.is_authenticated %}
+								<li><a href=""><i class="fa fa-user"></i> {{ user.username }}</a></li>
+                                {% endif %}
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-							
-                                <li><a href="{% url 'auth:login' %}"><i class="fa fa-lock"></i> Login</a></li>
-                               
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'auth:logout' %}"><i class="fa fa-lock"></i> Logout</a></li>
+                                {% else %}
+                                <li><a href="{% url 'auth:all_auth' %}"><i class="fa fa-lock"></i> Login</a></li>
+                                {% endif %}
 							</ul>
 						</div>
 					</div>
@@ -123,7 +127,7 @@
 										<li><a href="{% url 'product_details' %}" class="{% if request.resolver_match.url_name == 'product_details' %}active{% endif %}">Product Details</a></li> 
 										<li><a href="#" >Checkout</a></li> 
 										<li><a href="#">Cart</a></li> 
-										<li><a href="{% url 'auth:login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a></li> 
+										<li><a href="{% url 'auth:all_auth' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a></li> 
                                     </ul>
                                 </li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
@@ -132,7 +136,7 @@
 										<li><a href="{% url 'blog_single' %}" class="{% if request.resolver_match.url_name == 'blog_single' %}active{% endif %}">Blog Single</a></li>
                                     </ul>
                                 </li> 
-								<li><a href="contact-us.html">Contact</a></li>
+								<li><a href="{% url 'contact_us' %}" class="{% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">Contact</a></li>
 							</ul>
 						</div>
 					</div>
