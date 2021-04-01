@@ -1475,6 +1475,17 @@ h2.title {
   margin-right: 5px;
 }
 
+#submit-id-submit {
+  margin-top: 23px;
+  background: #FE980F;
+  border: medium none;
+  border-radius: 0;
+  color: #FFFFFF;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 25px;
+}
+
 .login-form form button {
   margin-top: 23px;
 }

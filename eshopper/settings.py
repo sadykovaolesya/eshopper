@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'blogapp',
     'authnapp', 
     'basketapp',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+AUTH_USER_MODEL = 'authnapp.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
