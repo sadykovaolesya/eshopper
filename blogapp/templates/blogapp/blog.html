@@ -12,80 +12,56 @@
 				<div class="col-sm-9">
 					<div class="blog-post-area">
 						<h2 class="title text-center">Latest From our Blog</h2>
+						{% for post in posts %}
 						<div class="single-blog-post">
-							<h3>Girls Pink T Shirt arrived in store</h3>
+							<h3>{{ post.title }}</h3>
 							<div class="post-meta">
 								<ul>
-									<li><i class="fa fa-user"></i> Mac Doe</li>
-									<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-									<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
+									<li><i class="fa fa-user"></i> {{ post.author.first_name }} {{ post.author.last_name }}</li>
+									<li><i class="fa fa-clock-o"></i> {{ post.publish.time }}</li>
+									<li><i class="fa fa-calendar"></i> {{ post.publish.date }}</li>
 								</ul>
-								<span>
+
+								<span>	
+										{% for star in post.count_full_stars %}		
 										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-o"></i>
+										{% endfor %}
+										{% for star in post.count_emp_stars %}
+										<i class="fa fa-star-o"></i>
+										{% endfor %}			
 								</span>
 							</div>
 							<a href="">
-								<img src="{% static 'images/blog/blog-one.jpg' %}" alt="">
+								<img src="{{ media_url }}{{ post.image }}" alt="">
 							</a>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<a  class="btn btn-primary" href="">Read More</a>
+							<p>{{ post.content|truncatewords:30|linebreaks }}</p>
+							<a  class="btn btn-primary" href="{{ post.get_absolute_url }}">Read More</a>
 						</div>
-						<div class="single-blog-post">
-							<h3>Girls Pink T Shirt arrived in store</h3>
-							<div class="post-meta">
-								<ul>
-									<li><i class="fa fa-user"></i> Mac Doe</li>
-									<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-									<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-								</ul>
-								<span>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-half-o"></i>
-								</span>
-							</div>
-							<a href="">
-								<img src="{% static 'images/blog/blog-two.jpg' %}" alt="">
-							</a>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<a  class="btn btn-primary" href="">Read More</a>
-						</div>
-						<div class="single-blog-post">
-							<h3>Girls Pink T Shirt arrived in store</h3>
-							<div class="post-meta">
-								<ul>
-									<li><i class="fa fa-user"></i> Mac Doe</li>
-									<li><i class="fa fa-clock-o"></i> 1:33 pm</li>
-									<li><i class="fa fa-calendar"></i> DEC 5, 2013</li>
-								</ul>
-								<span>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-half-o"></i>
-								</span>
-							</div>
-							<a href="">
-								<img src="{% static 'images/blog/blog-three.jpg' %}" alt="">
-							</a>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-							<a  class="btn btn-primary" href="">Read More</a>
-						</div>
+						{% endfor %}
+						
 						<div class="pagination-area">
 							<ul class="pagination">
-								<li><a href="" class="active">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
+								{% if posts.has_previous %}
+								<li><a href="?page={{ posts.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+								{% endif %}
+
+								{% for num in posts.paginator.page_range %}
+	
+									{% if num == posts.number %}
+										<li><a href="?page={{ num }} " class="active"> {{ num }} </a></li>
+									{% else %}
+									
+										<li><a href="?page={{ num }} ">{{ num }} </a></li>
+									
+									{% endif%}
+									
+								{% endfor %}
+								{% if posts.has_next %}	
+								<li><a href="?page={{ posts.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+								{% endif %}
 							</ul>
 						</div>
+						
 					</div>
 				
 {% endblock %}

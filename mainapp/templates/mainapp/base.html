@@ -132,8 +132,8 @@
                                 </li> 
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{% url 'blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog List</a></li>
-										<li><a href="{% url 'blog_single' %}" class="{% if request.resolver_match.url_name == 'blog_single' %}active{% endif %}">Blog Single</a></li>
+                                        <li><a href="{% url 'blog:blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog List</a></li>
+										
                                     </ul>
                                 </li> 
 								<li><a href="{% url 'contact_us' %}" class="{% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">Contact</a></li>

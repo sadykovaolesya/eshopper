@@ -1461,7 +1461,7 @@ h2.title {
   margin-bottom: 10px;
   outline: medium none;
   padding-left: 10px;
-  width: 100%;
+ 
 }
 
 .login-form form span{
@@ -1484,7 +1484,15 @@ h2.title {
   display: block;
   font-family: 'Roboto', sans-serif;
   padding: 6px 25px;
+  font-weight: 400;
+
 }
+#submit-id-submit:hover, #submit-id-submit:focus, #submit-id-submit:active {
+  color: #333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+
 
 .login-form form button {
   margin-top: 23px;
