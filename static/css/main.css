@@ -1228,7 +1228,16 @@ h2.title {
 	top:0;
 	left:0
 }
+.qwe{
+    background: #FC9A11;
+    border: 0 none;
+    border-radius: 0;
+    color: #FFFFFF;
+    font-size: 10px;
+    padding: 1px 7px;
+    text-transform: uppercase;
 
+}
 .product-information h2 {
   color: #363432;
   font-family: 'Roboto', sans-serif;
