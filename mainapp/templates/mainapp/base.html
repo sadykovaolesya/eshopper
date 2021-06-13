@@ -130,11 +130,8 @@
 										<li><a href="{% url 'auth:all_auth' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a></li> 
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="{% url 'blog:blog' %}" class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog List</a></li>
-										
-                                    </ul>
+								<li class="dropdown"><a href="{% url 'blog:blog' %}"class="{% if request.resolver_match.url_name == 'blog' %}active{% endif %}">Blog</a>
+                                  
                                 </li> 
 								<li><a href="{% url 'contact_us' %}" class="{% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">Contact</a></li>
 							</ul>
@@ -453,5 +450,6 @@
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/scrollform.js' %}"></script>
 </body>
 </html>
